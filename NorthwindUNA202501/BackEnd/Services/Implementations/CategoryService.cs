@@ -35,8 +35,6 @@ namespace BackEnd.Services.Implementations
 
         public CategoryDTO AddCategory(CategoryDTO category)
         {
-
-            
             _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
             _unidadDeTrabajo.Complete();
             return category;
@@ -72,9 +70,6 @@ namespace BackEnd.Services.Implementations
             var entity = Convertir(category);
             _unidadDeTrabajo.CategoryDAL.Update(entity);
             _unidadDeTrabajo.Complete();
-
-          
-
             return category;
         }
     }
