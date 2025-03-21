@@ -11,15 +11,19 @@ namespace DAL.Implementations
     public class UnidadDeTrabajo : IUnidadDeTrabajo
     {
         public ICategoryDAL CategoryDAL { get; set; }
-        public IShipperDAL ShipperDAL { get; set; } 
+        public IShipperDAL ShipperDAL { get; set; }
+
+        public IProductDAL ProductDAL { get; set; }
         NorthWindContext context;
 
         public UnidadDeTrabajo(ICategoryDAL categoryDAL, NorthWindContext context
-            , IShipperDAL shipperDAL)
+            , IShipperDAL shipperDAL
+            ,IProductDAL productDAL)
         {
             CategoryDAL = categoryDAL;
             this.context = context;
             ShipperDAL = shipperDAL;
+            ProductDAL = productDAL;
         }
         public void Dispose()
         {
