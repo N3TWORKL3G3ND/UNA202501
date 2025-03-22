@@ -10,7 +10,7 @@
 
         public int? CategoryId { get; set; }
 
-
+        public CategoryAPI Category { get; set; }
 
         public bool Discontinued { get; set; }
     }

@@ -1,4 +1,6 @@
-﻿namespace FrontEnd.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FrontEnd.Models
 {
     public class ProductViewModel
     {
@@ -10,8 +12,11 @@
 
         public IEnumerable<SupplierViewModel> Suppliers { get; set; }
 
+        [Display(Name ="Category")]
         public int? CategoryId { get; set; }
         public IEnumerable<CategoryViewModel> Categories { get; set; }
+
+        public string CategoryName { get; set; }
 
 
         public bool Discontinued { get; set; }

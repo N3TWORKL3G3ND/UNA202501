@@ -10,7 +10,9 @@
 
         public int? CategoryId { get; set; }
 
-       
+        public CategoryDTO Category { get; set; }
+
+
 
         public bool Discontinued { get; set; }
 

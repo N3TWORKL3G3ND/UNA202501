@@ -14,9 +14,18 @@ namespace BackEnd.Services.Implementations
                 this.unidadDeTrabajo = unidadDeTrabajo;
         }
 
+
+        CategoryDTO Convertir(Category category)
+        {
+            return new CategoryDTO
+            {
+                CategoryId = category.CategoryId,
+                CategoryName = category.CategoryName
+            };
+        }
         ProductDTO Convertir (Product product)
         {
-            return new ProductDTO
+          var result = new ProductDTO
             {
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
@@ -24,6 +33,18 @@ namespace BackEnd.Services.Implementations
                 SupplierId = product.SupplierId,
                 Discontinued = product.Discontinued
             };
+
+            var categoryEntity = unidadDeTrabajo
+                             .CategoryDAL
+                             .FindById((int)result.CategoryId);
+
+
+            result.Category = new CategoryDTO
+            {
+                CategoryId = categoryEntity.CategoryId,
+                CategoryName = categoryEntity.CategoryName
+            };
+            return result;
 
         }
 

@@ -23,7 +23,8 @@ namespace FrontEnd.Helpers.Implementations
                 SupplierId = product.SupplierId,
                 ProductId = product.ProductId,
                 ProductName = product.ProductName,
-                Discontinued = product.Discontinued
+                Discontinued = product.Discontinued,
+                CategoryName = product.Category.CategoryName
             };
         }
 
