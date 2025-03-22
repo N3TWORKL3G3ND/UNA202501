@@ -20,6 +20,13 @@ builder.Services.AddScoped<IShipperDAL, ShipperDALImpl>();
 builder.Services.AddScoped<IUnidadDeTrabajo, UnidadDeTrabajo>();
 builder.Services.AddScoped<ICategoryDAL, CategoryDALImpl>();
 builder.Services.AddScoped<ICategoryService, CategoryService>();
+
+builder.Services.AddScoped<IProductDAL, ProductDALImpl>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
+
+builder.Services.AddScoped<ISupplierDAL, SupplierDALImpl>();
+builder.Services.AddScoped<ISupplierService, SupplierService>();
 builder.Services.AddScoped<IShipperService, ShipperService>();
 #endregion
 
