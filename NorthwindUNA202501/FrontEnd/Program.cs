@@ -10,6 +10,7 @@ builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<IServiceHelper, ServiceHelper>();
 builder.Services.AddScoped<IServiceHelper, ServiceHelper>();
 builder.Services.AddScoped<ICategoryHelper, CategoryHelper>();
+builder.Services.AddScoped<IShipperHelper, ShipperHelper>();
 #endregion
 var app = builder.Build();
 
