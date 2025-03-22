@@ -27,7 +27,14 @@ builder.Services.AddScoped<IProductService, ProductService>();
 
 builder.Services.AddScoped<ISupplierDAL, SupplierDALImpl>();
 builder.Services.AddScoped<ISupplierService, SupplierService>();
+
+builder.Services.AddScoped<IShipperDAL, ShipperDALImpl>();
 builder.Services.AddScoped<IShipperService, ShipperService>();
+
+builder.Services.AddScoped<IOrderDAL, OrderDALImpl>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+
+
 #endregion
 
 var app = builder.Build();

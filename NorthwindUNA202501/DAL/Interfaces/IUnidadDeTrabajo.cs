@@ -16,6 +16,8 @@ namespace DAL.Interfaces
 
         ISupplierDAL SupplierDAL { get; }
 
+        IOrderDAL OrderDAL { get; }
+
         void Complete();
 
     }
