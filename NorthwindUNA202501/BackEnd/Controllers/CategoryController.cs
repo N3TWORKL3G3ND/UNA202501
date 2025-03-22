@@ -47,7 +47,7 @@ namespace BackEnd.Controllers
         }
 
         // DELETE api/<CategoryController>/5
-        [HttpDelete("{id}")]
+        [HttpDelete]
         public void Delete(int id)
         {
             _categoryService.DeleteCategory(id);
