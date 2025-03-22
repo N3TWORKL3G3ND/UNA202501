@@ -12,6 +12,7 @@ builder.Services.AddHttpClient<IServiceHelper, ServiceHelper>();
 builder.Services.AddScoped<IServiceHelper, ServiceHelper>();
 builder.Services.AddScoped<ICategoryHelper, CategoryHelper>();
 builder.Services.AddScoped<IProductHelper, ProductHelper>();
+builder.Services.AddScoped<ISupplierHelper, SupplierHelper>();
 #endregion
 var app = builder.Build();
 

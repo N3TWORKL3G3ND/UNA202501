@@ -14,16 +14,20 @@ namespace DAL.Implementations
         public IShipperDAL ShipperDAL { get; set; }
 
         public IProductDAL ProductDAL { get; set; }
+        public ISupplierDAL SupplierDAL { get; set; }
+
         NorthWindContext context;
 
         public UnidadDeTrabajo(ICategoryDAL categoryDAL, NorthWindContext context
             , IShipperDAL shipperDAL
-            ,IProductDAL productDAL)
+            ,IProductDAL productDAL
+            ,ISupplierDAL supplierDAL)
         {
             CategoryDAL = categoryDAL;
             this.context = context;
             ShipperDAL = shipperDAL;
             ProductDAL = productDAL;
+            SupplierDAL = supplierDAL;
         }
         public void Dispose()
         {

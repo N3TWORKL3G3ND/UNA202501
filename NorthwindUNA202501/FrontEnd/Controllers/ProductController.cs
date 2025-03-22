@@ -1,4 +1,5 @@
 ﻿using FrontEnd.Helpers.Interfaces;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,15 @@ namespace FrontEnd.Controllers
     {
 
         IProductHelper _productHelper;
-
-        public ProductController(IProductHelper productHelper)
+        ICategoryHelper _categoryHelper;
+        ISupplierHelper _supplierHelper;
+        public ProductController(IProductHelper productHelper,
+            ICategoryHelper categoryHelper
+            ,ISupplierHelper supplierHelper)
         {
                 this._productHelper = productHelper;
+            this._categoryHelper = categoryHelper;
+            this._supplierHelper = supplierHelper;
         }
         // GET: ProductController
         public ActionResult Index()
@@ -29,16 +35,20 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Create
         public ActionResult Create()
         {
-            return View();
+            var product = new ProductViewModel();
+            product.Categories = _categoryHelper.GetCategories();
+            product.Suppliers = _supplierHelper.Get();
+            return View(product);
         }
 
         // POST: ProductController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ProductViewModel product)
         {
             try
             {
+                _productHelper.Add(product);    
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -50,16 +60,21 @@ namespace FrontEnd.Controllers
         // GET: ProductController/Edit/5
         public ActionResult Edit(int id)
         {
-            return View();
+            var product = _productHelper.Get(id);
+            product.Categories = _categoryHelper.GetCategories();
+            product.Suppliers = _supplierHelper.Get();
+
+            return View(product);
         }
 
         // POST: ProductController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult Edit(ProductViewModel product)
         {
             try
             {
+                _productHelper.Update(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
