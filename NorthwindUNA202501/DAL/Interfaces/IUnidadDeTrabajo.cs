@@ -21,6 +21,8 @@ namespace DAL.Interfaces
 
         ICustomerDAL CustomerDAL { get; }
 
+        IEmployeeDAL EmployeeDAL { get; }
+
         void Complete();
 
     }
