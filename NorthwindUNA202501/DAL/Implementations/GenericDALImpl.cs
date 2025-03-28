@@ -38,6 +38,11 @@ namespace DAL.Implementations
             return _context.Set<T>().Find(id) ;
         }
 
+        public T FindByIdString(string id)
+        {
+            return _context.Set<T>().Find(id);
+        }
+
         public List<T> Get()
         {
             var result =_context.Set<T>().ToList();

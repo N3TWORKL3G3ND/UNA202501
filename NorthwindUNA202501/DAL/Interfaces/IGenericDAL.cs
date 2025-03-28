@@ -13,6 +13,7 @@ namespace DAL.Interfaces
         bool Remove(T entity);
         bool Update(T entity);
         T FindById(int id);
+        T FindByIdString(string id);
 
 
     }

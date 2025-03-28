@@ -10,6 +10,7 @@ namespace DAL.Interfaces
     public interface IUnidadDeTrabajo: IDisposable
     {
         ICategoryDAL CategoryDAL { get; }
+
         IShipperDAL ShipperDAL { get; }
 
         IProductDAL ProductDAL { get; }
@@ -17,6 +18,8 @@ namespace DAL.Interfaces
         ISupplierDAL SupplierDAL { get; }
 
         IOrderDAL OrderDAL { get; }
+
+        ICustomerDAL CustomerDAL { get; }
 
         void Complete();
 

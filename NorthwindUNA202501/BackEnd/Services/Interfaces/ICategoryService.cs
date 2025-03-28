@@ -4,7 +4,6 @@ namespace BackEnd.Services.Interfaces
 {
     public interface ICategoryService
     {
-
         List<CategoryDTO> GetCategories();
         CategoryDTO GetCategoryById(int id);
         CategoryDTO AddCategory(CategoryDTO category);

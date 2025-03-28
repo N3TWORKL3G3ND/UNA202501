@@ -18,13 +18,16 @@ namespace DAL.Implementations
 
         public IOrderDAL OrderDAL { get; set; }
 
+        public ICustomerDAL CustomerDAL { get; set; }
+
         NorthWindContext context;
 
         public UnidadDeTrabajo(ICategoryDAL categoryDAL, NorthWindContext context
             , IShipperDAL shipperDAL
             ,IProductDAL productDAL
             ,ISupplierDAL supplierDAL
-            ,IOrderDAL orderDAL)
+            ,IOrderDAL orderDAL
+            ,ICustomerDAL customerDAL)
         {
             CategoryDAL = categoryDAL;
             this.context = context;
@@ -32,6 +35,7 @@ namespace DAL.Implementations
             ProductDAL = productDAL;
             SupplierDAL = supplierDAL;
             OrderDAL = orderDAL;
+            CustomerDAL = customerDAL;
         }
         public void Dispose()
         {
