@@ -35,10 +35,13 @@ namespace FrontEnd.Controllers
         // POST: CategoryController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(CategoryViewModel category)
         {
             try
             {
+              
+
+                _categoryHelper.Create(category);   
                 return RedirectToAction(nameof(Index));
             }
             catch
