@@ -10,7 +10,7 @@
 
         public int? CategoryId { get; set; }
 
-        public CategoryDTO Category { get; set; }
+        public CategoryDTO? Category { get; set; }
 
 
 

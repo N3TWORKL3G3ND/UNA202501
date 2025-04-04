@@ -8,11 +8,14 @@ namespace BackEnd.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
+        ILogger<CategoryService> _logger;
 
         IUnidadDeTrabajo _unidadDeTrabajo;
-        public CategoryService(IUnidadDeTrabajo unidad)
+        public CategoryService(IUnidadDeTrabajo unidad,
+                        ILogger<CategoryService> logger)
         {
             _unidadDeTrabajo = unidad;
+            _logger = logger;
         }
 
         CategoryDTO Convertir(Category category)
@@ -35,9 +38,23 @@ namespace BackEnd.Services.Implementations
 
         public CategoryDTO AddCategory(CategoryDTO category)
         {
-            _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
-            _unidadDeTrabajo.Complete();
-            return category;
+            try
+            {
+                _logger.LogError("Ingresa a AddCategory");
+                _unidadDeTrabajo.CategoryDAL.Add(Convertir(category));
+                _unidadDeTrabajo.Complete();
+                return category;
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e.Message);
+
+                throw;
+            }
+
+            
+           
         }
 
         public CategoryDTO DeleteCategory(int id)
