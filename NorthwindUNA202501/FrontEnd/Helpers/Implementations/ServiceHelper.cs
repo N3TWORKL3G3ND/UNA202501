@@ -6,10 +6,13 @@ namespace FrontEnd.Helpers.Implementations
     {
         public HttpClient HttpClient { get; set; }
 
+        
 
-        public ServiceHelper(HttpClient client)
+
+        public ServiceHelper(HttpClient client, IConfiguration configuration)
         {
-            string baseURL = "http://localhost:5169";
+            string baseURL = configuration
+                                .GetValue<string>("BackEnd:URL") ?? "";
                 HttpClient = client;
             client.BaseAddress = new Uri(baseURL);
 
