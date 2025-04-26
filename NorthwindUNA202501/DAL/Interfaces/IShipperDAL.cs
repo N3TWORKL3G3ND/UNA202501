@@ -9,6 +9,10 @@ namespace DAL.Interfaces
 {
     public interface IShipperDAL : IGenericDAL<Shipper>
     {
-       
+        IEnumerable<Shipper> GetAllSP();
+        Shipper GetByIdSP(int id);
+        int? InsertSP(Shipper shipper);
+        bool UpdateSP(Shipper shipper);
+        bool DeleteSP(int id);
     }
 }

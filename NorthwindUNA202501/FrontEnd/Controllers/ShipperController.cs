@@ -1,5 +1,6 @@
 ﻿using FrontEnd.Helpers.Implementations;
 using FrontEnd.Helpers.Interfaces;
+using FrontEnd.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -29,16 +30,19 @@ namespace FrontEnd.Controllers
         // GET: ShipperController/Create
         public ActionResult Create()
         {
-            return View();
+            var shipper = new ShipperViewModel();
+            shipper = _shipperHelper.Create(shipper);
+            return View(shipper);
         }
 
         // POST: ShipperController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(ShipperViewModel shipper)
         {
             try
             {
+                _shipperHelper.Create(shipper);
                 return RedirectToAction(nameof(Index));
             }
             catch

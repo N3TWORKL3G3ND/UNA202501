@@ -37,7 +37,7 @@ namespace BackEnd.Services.Implementations
 
         public ShipperDTO AddShipper(ShipperDTO shipper)
         {
-            _unidadDeTrabajo.ShipperDAL.Add(Convertir(shipper));
+            _unidadDeTrabajo.ShipperDAL.InsertSP(Convertir(shipper));
             _unidadDeTrabajo.Complete();
             return shipper;
         }
@@ -58,7 +58,7 @@ namespace BackEnd.Services.Implementations
 
         public List<ShipperDTO> GetShippers()
         {
-            var shippers = _unidadDeTrabajo.ShipperDAL.Get();
+            var shippers = _unidadDeTrabajo.ShipperDAL.GetAllSP();
             List<ShipperDTO> shipperDTOs = new List<ShipperDTO>();
             foreach (var shipper in shippers)
             {

@@ -5,7 +5,7 @@ namespace Entities.Entities;
 
 public partial class Shipper
 {
-    public int ShipperId { get; set; }
+    public int? ShipperId { get; set; }
 
     public string CompanyName { get; set; } = null!;
 

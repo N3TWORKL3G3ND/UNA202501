@@ -42,7 +42,7 @@ namespace FrontEnd.Helpers.Implementations
         public ShipperViewModel Create(ShipperViewModel shipper)
         {
             var response = _helper.Post("api/Shipper", Convertir(shipper));
-
+            Console.WriteLine("Response: " + response);
             return shipper;
         }
 
