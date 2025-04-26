@@ -34,7 +34,7 @@ namespace DAL.Implementations
         }
 
 
-        public bool Add(Category category)
+        public new bool Add(Category category)
         {
             try
             {
