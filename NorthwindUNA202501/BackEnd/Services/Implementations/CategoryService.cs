@@ -67,7 +67,7 @@ namespace BackEnd.Services.Implementations
 
         public List<CategoryDTO> GetCategories()
         {
-            var categories = _unidadDeTrabajo.CategoryDAL.Get(); 
+            var categories = _unidadDeTrabajo.CategoryDAL.GetCategories(); 
             List<CategoryDTO> categoryDTOs = new List<CategoryDTO>();
             foreach (var category in categories)
             {
