@@ -37,6 +37,17 @@ namespace FrontEnd.Helpers.Implementations
         {
             var response = _helper.Post("api/Category", Convertir(category));
 
+            if (response != null)
+            {
+                var content = response.Content.ReadAsStringAsync().Result;
+
+                var result = JsonConvert.DeserializeObject<CategoryAPI>(content);
+
+                category = Convertir(result);
+
+
+            }
+
             return category;
         }
 
