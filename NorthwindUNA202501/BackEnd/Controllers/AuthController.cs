@@ -8,6 +8,10 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+
+    /*
+     https://prod.liveshare.vsengsaas.visualstudio.com/join?7B52DF3F60603A16882F736D70FC63F1D607
+     */
     public class AuthController : ControllerBase
     {
         private readonly UserManager<IdentityUser> _userManager;
