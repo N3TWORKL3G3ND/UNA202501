@@ -9,7 +9,7 @@ namespace BackEnd.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+   
     public class ProductController : ControllerBase
     {
         IProductService _productService;
@@ -36,7 +36,7 @@ namespace BackEnd.Controllers
             var result = _productService.Get(id);
             return result;
         }
-
+        [Authorize(Roles ="Admin")]
         // POST api/<ProductController>
         [HttpPost]
         public void Post([FromBody] ProductDTO product)
