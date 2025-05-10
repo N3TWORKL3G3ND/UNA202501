@@ -1,4 +1,5 @@
 ﻿using BackEnd.DTO;
+using BackEnd.Services.Implementations;
 using BackEnd.Services.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -25,14 +26,64 @@ namespace BackEnd.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login([FromBody] LoginDTO login)
+        [HttpPost]
+        [Route("login")]
+        public async Task<IActionResult> Login([FromBody] LoginDTO model)
         {
-            IdentityUser user = await _userManager.FindByNameAsync(login.UserName);
-            LoginDTO loginDTO = new LoginDTO();
-            if (user != null && await _userManager.CheckPasswordAsync(user,login.Password)) { 
-                    var userRoles = await _userManager.GetRolesAsync()
-            
+
+
+            IdentityUser user = await _userManager.FindByNameAsync(model.UserName);
+            LoginDTO Usuario = new LoginDTO();
+            if (user != null && await _userManager.CheckPasswordAsync(user, model.Password))
+            {
+
+                var userRoles = await _userManager.GetRolesAsync(user);
+
+                var jwtToken = _tokenService.GenerateToken(user, userRoles.ToList());
+
+                Usuario.Token = jwtToken;
+                Usuario.Roles = userRoles.ToList();
+                Usuario.UserName = user.UserName;
+
+
+                return Ok(Usuario);
             }
+
+            return Unauthorized();
+
+
+
+        }
+
+
+
+        [HttpPost]
+        [Route("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterDTO model)
+        {
+
+            var userExists = await _userManager.FindByNameAsync(model.UserName);
+
+            if (userExists != null)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
+
+            IdentityUser user = new IdentityUser
+            {
+                Email = model.Email,
+                SecurityStamp = Guid.NewGuid().ToString(),
+                UserName = model.UserName
+            };
+
+            var result = await _userManager.CreateAsync(user, model.Password);
+            if (!result.Succeeded)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+
+            }
+
+            return Ok();
 
         }
     }
