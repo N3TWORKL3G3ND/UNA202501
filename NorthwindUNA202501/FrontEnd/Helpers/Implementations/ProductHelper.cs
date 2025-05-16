@@ -10,6 +10,8 @@ namespace FrontEnd.Helpers.Implementations
 
         IServiceHelper _helper;
 
+        public string Token { get; set; }
+
         public ProductHelper(IServiceHelper helper)
         {
             _helper = helper;

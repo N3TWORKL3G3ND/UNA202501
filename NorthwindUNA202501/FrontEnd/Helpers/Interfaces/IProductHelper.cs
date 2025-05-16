@@ -5,6 +5,8 @@ namespace FrontEnd.Helpers.Interfaces
     public interface IProductHelper
     {
         ProductViewModel Get(int id);
+
+        string Token { get; set; }
         List<ProductViewModel> GetProducts();
 
         void Add(ProductViewModel product);
