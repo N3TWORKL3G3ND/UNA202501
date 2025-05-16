@@ -14,6 +14,10 @@ namespace FrontEnd.Helpers.Implementations
             string baseURL = configuration
                                 .GetValue<string>("BackEnd:URL") ?? "";
                 HttpClient = client;
+
+            var apiKey = configuration
+                                .GetValue<string>("BackEnd:ApiKey") ?? "";
+            client.DefaultRequestHeaders.Add("ApiKey", apiKey);
             client.BaseAddress = new Uri(baseURL);
 
         }
