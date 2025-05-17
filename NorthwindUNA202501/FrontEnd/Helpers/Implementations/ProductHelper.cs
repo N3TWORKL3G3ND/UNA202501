@@ -15,6 +15,7 @@ namespace FrontEnd.Helpers.Implementations
         public ProductHelper(IServiceHelper helper)
         {
             _helper = helper;
+           
         }
 
         ProductViewModel Convertir(ProductAPI product)
@@ -54,6 +55,7 @@ namespace FrontEnd.Helpers.Implementations
 
         public ProductViewModel Get(int id)
         {
+           
             var response = _helper.GetResponseMessage("api/product/" + id.ToString());
             var product = new ProductViewModel();
             if (response != null)
@@ -71,6 +73,11 @@ namespace FrontEnd.Helpers.Implementations
 
         public List<ProductViewModel> GetProducts()
         {
+            _helper.HttpClient.DefaultRequestHeaders
+              .Authorization =
+                   new System.Net.Http.Headers
+                          .AuthenticationHeaderValue("Bearer", Token);
+
             var response = _helper.GetResponseMessage("api/product");
             var lista = new List<ProductViewModel>();
             if (response != null)

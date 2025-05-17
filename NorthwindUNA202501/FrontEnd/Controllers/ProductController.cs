@@ -24,6 +24,7 @@ namespace FrontEnd.Controllers
         // GET: ProductController
         public ActionResult Index()
         {
+            _productHelper.Token = HttpContext.Session.GetString("Token");
             var lista = _productHelper.GetProducts();
             return View(lista);
         }
