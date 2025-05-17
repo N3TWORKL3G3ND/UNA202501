@@ -1,10 +1,12 @@
 ﻿using System.Security.Claims;
+using System.Text;
 using FrontEnd.ApiModels;
 using FrontEnd.Helpers.Interfaces;
 using FrontEnd.Models;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace FrontEnd.Controllers
 {
@@ -12,10 +14,12 @@ namespace FrontEnd.Controllers
     {
 
         ISecurityHelper _securityHelper;
+        IUserHelper _userHelper;
 
-        public LoginController(ISecurityHelper securityHelper)
+        public LoginController(ISecurityHelper securityHelper, IUserHelper userHelper)
         {
-                _securityHelper = securityHelper;
+            _securityHelper = securityHelper;
+            _userHelper = userHelper;
         }
         public IActionResult Login()
         {
@@ -84,6 +88,56 @@ namespace FrontEnd.Controllers
 
             return View();
         }
+
+
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel register)
+        {
+            
+            if (!ModelState.IsValid)
+            {
+                return View(register);
+            }
+
+            var success = await _userHelper.RegisterAsync(register);
+
+            if (success)
+            {
+                // Opcional: Redirigir al login
+                return RedirectToAction("Login", "Login");
+            }
+
+            ModelState.AddModelError(string.Empty, "Error al registrar el usuario.");
+            return View(register);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

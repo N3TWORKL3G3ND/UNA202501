@@ -1,4 +1,6 @@
 ﻿using FrontEnd.Helpers.Interfaces;
+using Newtonsoft.Json;
+using System.Text;
 
 namespace FrontEnd.Helpers.Implementations
 {
@@ -41,6 +43,15 @@ namespace FrontEnd.Helpers.Implementations
         public HttpResponseMessage Put(string url, object data)
         {
             return HttpClient.PutAsJsonAsync(url,data).Result;
+        }
+
+        public async Task<HttpResponseMessage> PostAsync(string url, object data)
+        {
+            var client = new HttpClient();
+            var json = JsonConvert.SerializeObject(data);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+            return await client.PostAsync(url, content);
         }
     }
 }

@@ -8,6 +8,7 @@
         HttpResponseMessage Post(string url, object data);
         HttpResponseMessage Put(string url, object data);
         HttpResponseMessage Delete(string url);
+        Task<HttpResponseMessage> PostAsync(string url, object data);
 
     }
 }

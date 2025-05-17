@@ -25,6 +25,7 @@ builder.Services.AddScoped<ICategoryHelper, CategoryHelper>();
 builder.Services.AddScoped<IProductHelper, ProductHelper>();
 builder.Services.AddScoped<ISupplierHelper, SupplierHelper>();
 builder.Services.AddScoped<ISecurityHelper, SecurityHelper>();
+builder.Services.AddScoped<IUserHelper, UserHelper>();
 #endregion
 var app = builder.Build();
 
