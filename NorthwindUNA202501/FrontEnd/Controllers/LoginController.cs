@@ -74,7 +74,11 @@ namespace FrontEnd.Controllers
 
                 return RedirectToAction("Index","Home");
             
-            } 
+            } else
+            {
+                ModelState.AddModelError("UserName", "Credenciales Inválidas");
+                return View(user);
+            }
 
 
 
